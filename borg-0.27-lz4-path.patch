@@ -1,0 +1,25 @@
+From 1a6e6688cf46dcc90ae62ee71bb6ec8464d2ae46 Mon Sep 17 00:00:00 2001
+From: Leo Famulari <leo@famulari.name>
+Date: Sun, 1 Nov 2015 01:44:25 -0500
+Subject: [PATCH] Fix copy paste error
+
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index 68a3db8..0bbed26 100644
+--- a/setup.py
++++ b/setup.py
+@@ -101,7 +101,7 @@ library_dirs.append(os.path.join(ssl_prefix, 'lib'))
+ 
+ possible_lz4_prefixes = ['/usr', '/usr/local', '/usr/local/opt/lz4', '/usr/local/lz4', '/usr/local/borg', '/opt/local']
+ if os.environ.get('BORG_LZ4_PREFIX'):
+-    possible_openssl_prefixes.insert(0, os.environ.get('BORG_LZ4_PREFIX'))
++    possible_lz4_prefixes.insert(0, os.environ.get('BORG_LZ4_PREFIX'))
+ lz4_prefix = detect_lz4(possible_lz4_prefixes)
+ if not lz4_prefix:
+     raise Exception('Unable to find LZ4 headers. (Looked here: {})'.format(', '.join(possible_lz4_prefixes)))
+-- 
+2.6.1
+
