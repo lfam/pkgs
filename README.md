@@ -1,6 +1,4 @@
-These are Guix packages that are for some reason not suitable for
-inclusion in the GNU Guix. Either they do not meet the standard of
-quality or they have an incompatible license.
+These are Guix packages that are for some reason not included in GNU Guix.
 
 Assuming the path to this directory is ~/pkgs, you  can use these
 packages with Guix by including the path to the repo in your
