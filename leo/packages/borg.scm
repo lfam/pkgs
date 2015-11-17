@@ -27,7 +27,7 @@
 (define-public borg
   (package
     (name "borg")
-    (version "0.28.0")
+    (version "0.28.2")
     (source (origin
               (method url-fetch)
               (uri (string-append
@@ -35,7 +35,7 @@
                     "borgbackup-" version ".tar.gz"))
               (sha256
                (base32
-                "0ghpkcbnvi2k3xc3x8p60wvvlrbfz9bpd3wir5mimn4y3n1zfsib"))))
+                "1szh5b1a124hwi2cyzaxi5iawj5scaff8055diana814b1byk3ng"))))
     (build-system python-build-system)
     (arguments
      `(#:phases
@@ -51,8 +51,7 @@
             (setenv "BORG_LZ4_PREFIX" (assoc-ref inputs "lz4"))
             #t)))))
     (native-inputs
-     `(("python-setuptools-scm" ,python-setuptools-scm)
-       ("python-mock" ,python-mock)))
+     `(("python-setuptools-scm" ,python-setuptools-scm)))
     (inputs
      `(("acl" ,acl)
        ("lz4" ,lz4)
