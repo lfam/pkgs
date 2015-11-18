@@ -27,11 +27,9 @@
        #:make-flags (list
                       "CC=gcc"
                       (string-append "PREFIX=" %output)
-                      (string-append "INCS ="
-                                     " -I."
+                      (string-append "INCS +="
                                      " -I" (assoc-ref %build-inputs "freetype")
-                                     "/include/freetype2"
-                                     " -I${X11INC}"))))
+                                     "/include/freetype2"))))
     (inputs
       `(("libpng" ,libpng)
         ("libx11" ,libx11)
