@@ -10,7 +10,7 @@
 (define-public sent
   (package
     (name "sent")
-    (version "0.1")
+    (version "0.2")
     (source (origin
              (method url-fetch)
              (uri (string-append
@@ -18,7 +18,7 @@
                   version ".tar.gz"))
              (sha256
               (base32
-               "09fhq3qi0q6cn3skl2wd706wwa8wxffp0hrzm22bafzqxaxsaslz"))))
+               "0xhh752hwaa26k4q6wvrb9jnpbnylss2aw6z11j7l9rav7wn3fak"))))
     (build-system gnu-build-system)
     (arguments
      `(#:phases (modify-phases %standard-phases
