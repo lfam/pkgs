@@ -2,40 +2,23 @@
   #:use-module (guix packages)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix download)
-  #:use-module (guix utils)
-  #:use-module (guix build utils)
-  #:use-module (guix build-system gnu)
   #:use-module (guix build-system python)
   #:use-module (gnu packages)
   #:use-module (gnu packages acl)
-  #:use-module (gnu packages base)
   #:use-module (gnu packages compression)
-  #:use-module (gnu packages dejagnu)
-  #:use-module (gnu packages glib)
-  #:use-module (gnu packages gnupg)
-  #:use-module (gnu packages linux)
-  #:use-module (gnu packages mcrypt)
-  #:use-module (gnu packages nettle)
-  #:use-module (gnu packages pcre)
-  #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages python)
-  #:use-module (gnu packages rsync)
-  #:use-module (gnu packages ssh)
-  #:use-module (gnu packages tls)
-  #:use-module (gnu packages xml))
+  #:use-module (gnu packages tls))
 
 (define-public borg
   (package
     (name "borg")
-    (version "0.28.2")
+    (version "0.29.0")
     (source (origin
               (method url-fetch)
-              (uri (string-append
-                    "https://pypi.python.org/packages/source/b/borgbackup/"
-                    "borgbackup-" version ".tar.gz"))
+              (uri (pypi-uri "borgbackup" version))
               (sha256
                (base32
-                "1szh5b1a124hwi2cyzaxi5iawj5scaff8055diana814b1byk3ng"))))
+                "1gvx036a7j16hd5rg8cr3ibiig7gwqhmddrilsakcw4wnfimjy5m"))))
     (build-system python-build-system)
     (arguments
      `(#:phases
