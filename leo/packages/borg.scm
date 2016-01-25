@@ -31,13 +31,13 @@
 (define-public borg
   (package
     (name "borg")
-    (version "0.29.0")
+    (version "0.30.0")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "borgbackup" version))
               (sha256
                (base32
-                "1gvx036a7j16hd5rg8cr3ibiig7gwqhmddrilsakcw4wnfimjy5m"))))
+                "0n78c982kdfqbyi9jawcvzgdik4l36c2s7rpzkfr1ka6506k2rx4"))))
     (build-system python-build-system)
     (arguments
      `(#:phases
