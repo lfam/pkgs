@@ -1,5 +1,5 @@
 ;;; GNU Guix --- Functional package management for GNU
-;;; Copyright © 2015 Leo Famulari <leo@famulari.name>
+;;; Copyright © 2015, 2016 Leo Famulari <leo@famulari.name>
 ;;;
 ;;; This file is NOT part of GNU Guix, but is supposed to be used with GNU
 ;;; Guix and thus has the same license.
@@ -42,18 +42,28 @@
     (arguments
      `(#:phases
        (modify-phases %standard-phases
-         (add-before
-          'build 'set-openssl-prefix
-          (lambda* (#:key inputs #:allow-other-keys)
-            (setenv "BORG_OPENSSL_PREFIX" (assoc-ref inputs "openssl"))
-            #t))
-         (add-before
-          'build 'set-lz4-prefix
-          (lambda* (#:key inputs #:allow-other-keys)
-            (setenv "BORG_LZ4_PREFIX" (assoc-ref inputs "lz4"))
-            #t)))))
+         ;; The build process needs PYTHON_EGG_CACHE to be writeable.
+         (add-after 'unpack 'set-PYTHON_EGG_CACHE
+           (lambda _ (setenv "PYTHON_EGG_CACHE" "/tmp")))
+         (add-before 'build 'set-openssl-prefix
+           (lambda* (#:key inputs #:allow-other-keys)
+             (setenv "BORG_OPENSSL_PREFIX" (assoc-ref inputs "openssl"))
+             #t))
+         (add-before 'build 'set-lz4-prefix
+           (lambda* (#:key inputs #:allow-other-keys)
+             (setenv "BORG_LZ4_PREFIX" (assoc-ref inputs "lz4"))
+             #t))
+         (add-after 'install 'docs
+           (lambda* (#:key outputs #:allow-other-keys)
+             (let* ((out (assoc-ref outputs "out"))
+                    (man (string-append out "/share/man/man1")))
+               (zero? (system* "make" "-C" "docs" "man"))
+               (install-file "docs/_build/man/borg.1" man)))))))
     (native-inputs
-     `(("python-setuptools-scm" ,python-setuptools-scm)))
+     `(("python-setuptools-scm" ,python-setuptools-scm)
+       ;; For building the documentation.
+       ("python-sphinx" ,python-sphinx)
+       ("python-sphinx-rtd-theme" ,python-sphinx-rtd-theme)))
     (inputs
      `(("acl" ,acl)
        ("lz4" ,lz4)
