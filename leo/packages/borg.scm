@@ -31,13 +31,13 @@
 (define-public borg
   (package
     (name "borg")
-    (version "0.30.0")
+    (version "1.0.0rc1")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "borgbackup" version))
               (sha256
                (base32
-                "0n78c982kdfqbyi9jawcvzgdik4l36c2s7rpzkfr1ka6506k2rx4"))))
+                "1iarvw9im183lsdmdp5ny1q5vs0iza60886y6mng76qwdg8m1j0g"))))
     (build-system python-build-system)
     (arguments
      `(#:phases
@@ -68,7 +68,7 @@
      `(("acl" ,acl)
        ("lz4" ,lz4)
        ("openssl" ,openssl)
-       ("python-llfuse" ,python-llfuse)
+       ("python-llfuse-0.41" ,python-llfuse) ; incompatible with llfuse > 0.41
        ("python-msgpack" ,python-msgpack)))
     (synopsis "Deduplicated, encrypted, authenticated and compressed backups")
     (description "Borg is a deduplicating backup program.  Optionally, it
