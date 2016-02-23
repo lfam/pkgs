@@ -46,7 +46,7 @@
       (native-inputs
        `(("python2-mock" ,python2-mock)))
       (propagated-inputs
-       `(("acme" ,acme)
+       `(("python2-acme" ,python2-acme)
          ("python2-pyopenssl" ,python2-pyopenssl)
          ("python2-pytz" ,python2-pytz)
          ("python2-requests" ,python2-requests)))
