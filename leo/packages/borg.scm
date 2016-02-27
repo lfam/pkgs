@@ -68,8 +68,11 @@
      `(("acl" ,acl)
        ("lz4" ,lz4)
        ("openssl" ,openssl)
-       ("python-llfuse-0.41" ,python-llfuse) ; incompatible with llfuse > 0.41
-       ("python-msgpack" ,python-msgpack)))
+       ("python-msgpack" ,python-msgpack)
+
+       ;; incompatible with llfuse > 0.41
+       ;; Check again for borg > 1.0.0rc1
+       ("python-llfuse-0.41" ,python-llfuse)))
     (synopsis "Deduplicated, encrypted, authenticated and compressed backups")
     (description "Borg is a deduplicating backup program.  Optionally, it
 supports compression and authenticated encryption.  The main goal of Borg is to
