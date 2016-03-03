@@ -55,6 +55,6 @@
 @item Display the configuration variables with different values in a table form.
 @item Display the configuration variables and values which are found in only one
 of the compared files.
-@enumerate")
+@end enumerate")
     (home-page "http://stoopidsimple.com/kccmp")
     (license gpl2))) ; "later version" never mentioned
