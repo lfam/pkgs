@@ -19,32 +19,23 @@
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (leo packages moreutils-perpendicular)
-  #:use-module ((guix licenses) #:prefix l:)
+  #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (guix download)
   #:use-module (guix build-system gnu)
+  #:use-module (gnu packages docbook) 
+  #:use-module (gnu packages moreutils)
   #:use-module (gnu packages perl)
-  #:use-module (gnu packages xml)
-  #:use-module (gnu packages docbook))
+  #:use-module (gnu packages xml))
 
 (define-public moreutils-perpendicular
   (package
     (name "moreutils-perpendicular")
-    (version "0.57")
-    (source (origin
-              (method url-fetch)
-              (uri (string-append
-                    "mirror://debian/pool/main/m/moreutils/moreutils_"
-                    version ".orig.tar.gz"))
-              (sha256
-               (base32
-                "078dpkwwwrv8hxnylbc901kib2d1rr3hsja37j6dlpjfcfq58z9s"))))
+    (version (package-version moreutils))
+    (source (package-source moreutils))
+
     (build-system gnu-build-system)
-    (inputs `(("perl" ,perl)
-              ("libxml2" ,libxml2)
-              ("libxslt" ,libxslt)
-              ("docbook-xml" ,docbook-xml-4.4)
-              ("docbook-xsl" ,docbook-xsl)))
+    (inputs (package-inputs moreutils))
     (arguments
      `(#:phases (modify-phases %standard-phases
         (replace 'configure
@@ -66,10 +57,10 @@
              (string-append "MANS=sponge.1 vidir.1 vipe.1 isutf8.1 ts.1 "
                             "combine.1 ifdata.1 ifne.1 pee.1 zrun.1 chronic.1 "
                             "mispipe.1 lckdo.1 errno.1"))))
-    (home-page "http://joeyh.name/code/moreutils/")
+    (home-page (package-home-page moreutils))
     (synopsis "Miscellaneous general-purpose command-line tools")
     (description
      "Moreutils is a collection of general-purpose command-line tools to
 augment the traditional Unix toolbox.  This packaging of moreutils omits the
 'parallel' application.")
-    (license l:gpl2+)))
+    (license gpl2+)))
