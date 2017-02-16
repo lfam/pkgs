@@ -25,7 +25,7 @@
   #:use-module (gnu packages compression)
   #:use-module (gnu packages xorg)
   #:use-module (gnu packages linux)
-  #:use-module (gnu packages mit-krb5)
+  #:use-module (gnu packages kerberos)
   #:use-module (gnu packages groff)
   #:use-module (gnu packages ssh)
   #:use-module (gnu packages tls))
