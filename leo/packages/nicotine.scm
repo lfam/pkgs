@@ -26,7 +26,6 @@
   #:use-module (gnu packages music)
   #:use-module (gnu packages python))
 
-
 (define-public nicotine+
  (package
    (name "nicotine+")
@@ -44,6 +43,12 @@
     `(#:python ,python-2
       #:phases
       (modify-phases %standard-phases
+        ;; Disable the dialog that asks, "Are you sure you want to quit?"
+        (add-after 'unpack 'disable-exit-dialog
+          (lambda _
+            (substitute* "pynicotine/config.py"
+              (("\\\"exitdialog\\\": 1") "\"exitdialog\": 0"))
+            #t))
         (add-after 'unpack 'patch-installation-paths
           (lambda* (#:key outputs #:allow-other-keys)
             (let* ((out (assoc-ref %outputs "out"))
