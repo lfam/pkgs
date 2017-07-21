@@ -1,7 +1,8 @@
 ;;; GNU Guix --- Functional package management for GNU
 ;;; Copyright © 2016, 2017 Leo Famulari <leo@famulari.name>
 ;;;
-;;; This file is part of GNU Guix.
+;;; This file is NOT part of GNU Guix, but is supposed to be used with GNU
+;;; Guix and has the same license.
 ;;;
 ;;; GNU Guix is free software; you can redistribute it and/or modify it
 ;;; under the terms of the GNU General Public License as published by
