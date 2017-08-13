@@ -43,12 +43,18 @@
     `(#:python ,python-2
       #:phases
       (modify-phases %standard-phases
-        ;; Disable the dialog that asks, "Are you sure you want to quit?"
         (add-after 'unpack 'disable-exit-dialog
+          ;; Disable the dialog that asks, "Are you sure you want to quit?"
           (lambda _
             (substitute* "pynicotine/config.py"
               (("\\\"exitdialog\\\": 1") "\"exitdialog\": 0"))
             #t))
+        (add-after 'unpack 'default-chat-room
+          ;; Don't join the 'nicotine' chat room by default.
+          (lambda _
+            (substitute* "pynicotine/config.py"
+              (("\\\"autojoin\\\": \\[\\\"nicotine\\\"\\],")
+               "\"autojoin\": [\"\"],"))))
         (add-after 'unpack 'patch-installation-paths
           (lambda* (#:key outputs #:allow-other-keys)
             (let* ((out (assoc-ref %outputs "out"))
