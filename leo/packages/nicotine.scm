@@ -68,5 +68,5 @@
    (home-page "https://www.nicotine-plus.org/")
    (synopsis "Graphical Soulseek client")
    (description "Nicotine+ is a graphical client for the SoulSeek peer-to-peer
-system file-sharing system.")
+file-sharing system.")
    (license gpl3+)))
