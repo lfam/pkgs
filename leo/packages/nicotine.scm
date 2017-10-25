@@ -35,6 +35,7 @@
        (method url-fetch)
        (uri (string-append "https://github.com/Nicotine-Plus/nicotine-plus/"
                            "archive/" version ".tar.gz"))
+       (file-name (string-append name "-" version ".tar.gz"))
        (sha256
         (base32
          "1mmpjwa4c78b8325kxc8z629fa23653cr459dywlw7lqdlcyyf0v"))))
