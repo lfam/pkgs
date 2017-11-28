@@ -19,11 +19,25 @@
 
 (define-module (leo packages openssh)
   #:use-module (guix packages) ; package-input-rewriting
+  #:use-module (guix download) ; url-fetch
   #:use-module (gnu packages ssh)
   #:use-module (gnu packages tls))
 
+;; This is required for Python 3.5. With Python 3.6, this can be removed.
+(define libressl-2.5
+  (package (inherit libressl)
+    (name "libressl")
+    (version "2.5.5")
+    (source (origin
+              (method url-fetch)
+              (uri (string-append "mirror://openbsd/LibreSSL/"
+                                  name "-" version ".tar.gz"))
+              (sha256
+               (base32
+                "1i77viqy1afvbr392npk9v54k9zhr9zq2vhv6pliza22b0ymwzz5"))))))
+
 (define libressl-instead-of-openssl
-  (package-input-rewriting `((,openssl . ,libressl))))
+  (package-input-rewriting `((,openssl . ,libressl-2.5))))
 
 ;;; This is OpenSSH built with LibreSSL instead of OpenSSL.
 (define-public openssh-libressl
