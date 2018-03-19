@@ -21,9 +21,10 @@
   #:use-module (guix packages) ; package-input-rewriting
   #:use-module (guix download) ; url-fetch
   #:use-module (gnu packages ssh)
-  #:use-module (gnu packages tls))
+  #:use-module (gnu packages tls)
+  #:use-module (srfi srfi-1))
 
-;; This is required for Python 3.5. With Python 3.6, this can be removed.
+; This is required for Python 3.5. With Python 3.6, this can be removed.
 (define libressl-2.5
   (package (inherit libressl)
     (name "libressl")
@@ -39,8 +40,19 @@
 (define libressl-instead-of-openssl
   (package-input-rewriting `((,openssl . ,libressl-2.5))))
 
-;;; This is OpenSSH built with LibreSSL instead of OpenSSL.
+;; This is OpenSSH built with LibreSSL instead of OpenSSL.
+;; XXX LibreSSL 2.6 is not compatible with Python 3.6. And I don't think
+;; we need to rewrite the entire dependency graph anyways; does openssh
+;; refer to Python after it's built? Or any other openssl linkages?
+;(define-public openssh-libressl
+;  (package
+;    (inherit (libressl-instead-of-openssl openssh))
+;    (name "openssh-libressl")))
+
 (define-public openssh-libressl
   (package
-    (inherit (libressl-instead-of-openssl openssh))
-    (name "openssh-libressl")))
+    (inherit openssh)
+    (name "openssh-libressl")
+    (inputs
+     `(("libressl" ,libressl)
+       ,@(alist-delete "openssl" (package-inputs openssh))))))
