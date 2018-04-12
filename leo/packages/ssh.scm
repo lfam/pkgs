@@ -17,7 +17,7 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
-(define-module (leo packages openssh)
+(define-module (leo packages ssh)
   #:use-module (guix packages) ; package-input-rewriting
   #:use-module (guix download) ; url-fetch
   #:use-module (gnu packages ssh)
