@@ -19,7 +19,7 @@
 
 (define-module (leo packages nicotine)
   #:use-module (guix build-system python)
-  #:use-module (guix download)
+  #:use-module (guix git-download)
   #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (gnu packages gtk)
@@ -29,16 +29,16 @@
 (define-public nicotine+
  (package
    (name "nicotine+")
-   (version "1.4.1")
+   (version "1.4.2")
    (source
      (origin
-       (method url-fetch)
-       (uri (string-append "https://github.com/Nicotine-Plus/nicotine-plus/"
-                           "archive/" version ".tar.gz"))
-       (file-name (string-append name "-" version ".tar.gz"))
+       (method git-fetch)
+       (uri (git-reference
+              (url "https://github.com/Nicotine-Plus/nicotine-plus.git")
+              (commit "2e8d534c0cf36fe1be5e2f25f89182c870dc4330")))
        (sha256
         (base32
-         "1mmpjwa4c78b8325kxc8z629fa23653cr459dywlw7lqdlcyyf0v"))))
+         "03a3mcgzkx0zz1hmkzkq43kfkihkxa9ip6wlxyx2nwnhyb0zgzg9"))))
    (build-system python-build-system)
    (arguments
     `(#:python ,python-2
