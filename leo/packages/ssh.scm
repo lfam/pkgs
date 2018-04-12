@@ -56,3 +56,11 @@
     (inputs
      `(("libressl" ,libressl)
        ,@(alist-delete "openssl" (package-inputs openssh))))))
+
+(define-public mosh-libressl
+  (package
+    (inherit mosh)
+    (name "mosh-libressl")
+    (inputs
+     `(("libressl" ,libressl)
+       ,@(alist-delete "openssl" (package-inputs mosh))))))
