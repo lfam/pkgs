@@ -1,0 +1,12 @@
+--- a/python/imagescanner.c
++++ b/python/imagescanner.c
+@@ -67,7 +67,8 @@ imagescanner_get_results (zbarImageScann
+ }
+ 
+ static PyGetSetDef imagescanner_getset[] = {
+-    { "results", (getter)imagescanner_get_results, },
++    { "results", (getter)imagescanner_get_results, NULL, NULL, NULL},
++    {NULL}  /* Sentinel */
+ };
+ 
+ static PyObject*
