@@ -36,6 +36,7 @@
        (uri (git-reference
               (url "https://github.com/Nicotine-Plus/nicotine-plus.git")
               (commit "2e8d534c0cf36fe1be5e2f25f89182c870dc4330")))
+       (file-name (git-file-name name version))
        (sha256
         (base32
          "03a3mcgzkx0zz1hmkzkq43kfkihkxa9ip6wlxyx2nwnhyb0zgzg9"))))
