@@ -25,7 +25,7 @@
   #:use-module (gnu packages)
   #:use-module (gnu packages acl)
   #:use-module (gnu packages compression)
-  #:use-module (gnu packages python)
+  #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages tls))
 
 (define-public borg-0
