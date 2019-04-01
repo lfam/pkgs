@@ -18,6 +18,7 @@
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (leo packages encpipe)
+  #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (guix build-system gnu)
   #:use-module (guix git-download))
