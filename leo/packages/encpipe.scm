@@ -23,8 +23,9 @@
   #:use-module (guix git-download))
 
 (define-public encpipe
-  (let ((commit "c1ad16c159abcf111af04ddb392c394a1ae91672")
-        (revision "0"))
+  ;; The first freely-licensed commit...
+  (let ((commit "a11249087f66bf7df575d44ac969137a6f54c19f")
+        (revision "1"))
     (package
       (name "encpipe")
       (version (git-version "0.4" revision commit))
@@ -38,7 +39,7 @@
       (file-name (git-file-name name version))
       (sha256
        (base32
-        "1vdj7s0y5pd7rgakml5fvwjs4x0s5ggjmp3sw34bbgj59nzla4zd"))))
+        "1mrzgx8hdcrm4cm7imsj65zy8zc6x2xwzzgz62j19gca5kz36aam"))))
       (build-system gnu-build-system)
       (arguments
         ;; XXX Disable -march=native
@@ -53,5 +54,4 @@
       (description "Encpipe is a password-based file encryption tool.  It can
 act on files or standard input and output.  Encpipe is based on libhydrogen,
 using Curve25519 and the Gimli permutation.")
-      ;; ISC license except for ransomware.
-      (license #f))))
+      (license isc))))
