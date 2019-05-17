@@ -24,9 +24,8 @@
   #:use-module (guix git-download))
 
 (define-public encpipe
-  ;; The first freely-licensed commit...
-  (let ((commit "a11249087f66bf7df575d44ac969137a6f54c19f")
-        (revision "1"))
+  (let ((commit "95b4c87139ae2167d589b7ba24587477b9476258")
+        (revision "2"))
     (package
       (name "encpipe")
       (version (git-version "0.4" revision commit))
@@ -40,7 +39,7 @@
       (file-name (git-file-name name version))
       (sha256
        (base32
-        "1mrzgx8hdcrm4cm7imsj65zy8zc6x2xwzzgz62j19gca5kz36aam"))))
+        "0w25ck1jsipjw6dci63lxzr61n8sr9br4k5vz6ip2qk5isc8f5ry"))))
       (build-system gnu-build-system)
       (arguments
         ;; XXX Disable -march=native
