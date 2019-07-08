@@ -24,34 +24,32 @@
   #:use-module (guix git-download))
 
 (define-public encpipe
-  (let ((commit "95b4c87139ae2167d589b7ba24587477b9476258")
-        (revision "2"))
-    (package
-      (name "encpipe")
-      (version (git-version "0.4" revision commit))
-      (source (origin
-                (method git-fetch)
-                (uri (git-reference
-                       (url "https://github.com/jedisct1/encpipe.git")
-                       (commit commit)
-                       ;; Download libhydrogen
-                       (recursive? #t)))
-      (file-name (git-file-name name version))
-      (sha256
-       (base32
-        "0w25ck1jsipjw6dci63lxzr61n8sr9br4k5vz6ip2qk5isc8f5ry"))))
-      (build-system gnu-build-system)
-      (arguments
-        ;; XXX Disable -march=native
-       `(#:make-flags (list "CC=gcc"
-                            (string-append "PREFIX=" (assoc-ref %outputs "out")))
-         #:phases
-         (modify-phases %standard-phases
-           ;; No ./configure script
-           (delete 'configure))))
-      (home-page "https://github.com/jedisct1/encpipe/")
-      (synopsis "Encrypt a file using a password")
-      (description "Encpipe is a password-based file encryption tool.  It can
+  (package
+    (name "encpipe")
+    (version "0.5")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                     (url "https://github.com/jedisct1/encpipe.git")
+                     (commit version)
+                     ;; Download libhydrogen
+                     (recursive? #t)))
+    (file-name (git-file-name name version))
+    (sha256
+     (base32
+      "1mk178kf7vbk92hshylfm20giy8dgncc16s9if1hrffrdi4hllb2"))))
+    (build-system gnu-build-system)
+    (arguments
+      ;; XXX Disable -march=native
+     `(#:make-flags (list "CC=gcc"
+                          (string-append "PREFIX=" (assoc-ref %outputs "out")))
+       #:phases
+       (modify-phases %standard-phases
+         ;; No ./configure script
+         (delete 'configure))))
+    (home-page "https://github.com/jedisct1/encpipe/")
+    (synopsis "Encrypt a file using a password")
+    (description "Encpipe is a password-based file encryption tool.  It can
 act on files or standard input and output.  Encpipe is based on libhydrogen,
 using Curve25519 and the Gimli permutation.")
-      (license isc))))
+    (license isc)))
