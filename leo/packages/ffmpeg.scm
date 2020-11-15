@@ -1,5 +1,5 @@
 ;;; GNU Guix --- Functional package management for GNU
-;;; Copyright © 2018 Leo Famulari <leo@famulari.name>
+;;; Copyright © 2018, 2020 Leo Famulari <leo@famulari.name>
 ;;;
 ;;; This file is NOT part of GNU Guix, but is supposed to be used with GNU
 ;;; Guix and thus has the same license.
@@ -28,12 +28,23 @@
   (package (inherit ffmpeg)
     (name "ffmpeg-with-aac")
     (arguments
-      (substitute-keyword-arguments (package-arguments ffmpeg)
-        ((#:configure-flags cf)
-         `(append ,cf
-                  (list "--enable-libfdk-aac"
-                        ;; libfdk is free, but incompatible with FFmpeg...
-                        "--enable-nonfree")))))
+     `(,@(substitute-keyword-arguments
+           `(#:modules ((guix build gnu-build-system)
+                        (guix build utils))
+                        ,@(package-arguments ffmpeg))
+            ((#:configure-flags flags)
+             `(append ,flags
+                      (list "--enable-libfdk-aac"
+                            ;; libfdk is free, but incompatible with FFmpeg...
+                            "--enable-nonfree")))
+            ((#:phases phases)
+             `(modify-phases ,phases
+                (add-after 'unpack 'disable-banner
+                  (lambda _
+                    (substitute* "fftools/cmdutils.c"
+                      (("int hide_banner = 0")
+                        "int hide_banner = 1"))
+                    #t)))))))
     (inputs
      `(("libfdk" ,libfdk)
        ,@(package-inputs ffmpeg)))))
