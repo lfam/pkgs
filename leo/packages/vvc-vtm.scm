@@ -34,7 +34,8 @@
               (uri (git-reference
                      (url "https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM.git")
                      (commit (string-append "VTM-" version))))
-              (file-name (git-file-name name version))
+; XXX
+;              (file-name (git-file-name name version))
               (sha256
                (base32
                 "11a96z06yz7m9mfzwbkym48qwiy1430jxf17cjvjidlgv1c2ib2v"))))
