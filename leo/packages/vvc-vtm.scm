@@ -24,11 +24,12 @@
   #:use-module (guix build-system cmake))
 
 ;; XXX This package fails to "build" because the CMake build scripts lack an
-;; installation procedure.
+;; installation procedure. You could build it with --keep-failed and run it from
+;; the build directory.
 (define-public vtm
   (package
     (name "vtm")
-    (version "11.0")
+    (version "12.0")
     (source (origin
               (method git-fetch)
               (uri (git-reference
@@ -37,7 +38,7 @@
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "11a96z06yz7m9mfzwbkym48qwiy1430jxf17cjvjidlgv1c2ib2v"))))
+                "0fvlnngzifcaqvhykpv1j8l3pd6s5fh2i82fgwrp29iqp4zakjk3"))))
     ;; Only 64-bit architectures are supported upstream. For more info:
     ;; https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM#build-instructions
     (supported-systems '("x86_64-linux" "aarch64-linux"))
