@@ -1,5 +1,5 @@
 ;;; GNU Guix --- Functional package management for GNU
-;;; Copyright © 2020 Leo Famulari <leo@famulari.name>
+;;; Copyright © 2020, 2021 Leo Famulari <leo@famulari.name>
 ;;;
 ;;; This file is NOT part of GNU Guix, but is supposed to be used with GNU
 ;;; Guix and has the same license.
@@ -29,7 +29,7 @@
 (define-public vtm
   (package
     (name "vtm")
-    (version "13.0")
+    (version "14.2")
     (source (origin
               (method git-fetch)
               (uri (git-reference
@@ -38,7 +38,7 @@
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "15qp81d7khwa745ndxvp2grdg9d2qff21fi3ig9ybpv2r4mhmmzq"))))
+                "07gca29gsmqpl53m43i0laqpxhdd9505ja34gprw2jgva43rar61"))))
     ;; Only 64-bit architectures are supported upstream. For more info:
     ;; https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM#build-instructions
     (supported-systems '("x86_64-linux" "aarch64-linux"))
