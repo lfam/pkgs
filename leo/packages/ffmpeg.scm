@@ -24,6 +24,7 @@
   #:use-module (guix utils)
   #:use-module (guix build-system python)
   #:use-module (gnu packages audio)
+  #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages video))
 
 (define-public ffmpeg-with-aac
@@ -67,4 +68,31 @@
     (synopsis "Run an FFmpeg")
     (description "This package provides a method to run an FFmpeg command with
 while printing a progress update.")
+    (license expat)))
+
+(define-public ffmpeg-normalize
+  (package
+    (name "ffmpeg-normalize")
+    (version "1.22.4")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "ffmpeg-normalize" version))
+       (sha256
+        (base32
+         "1qw2d71ylmnyh04j9aqp53yqw3yygvwa0npgwpdip9g9i99ph2d2"))))
+    (build-system python-build-system)
+    (propagated-inputs
+      `(("python-colorama" ,python-colorama)
+        ("python-ffmpeg-progress-yield" ,python-ffmpeg-progress-yield)
+        ("python-tqdm" ,python-tqdm)))
+    (home-page "https://github.com/slhck/ffmpeg-normalize/")
+    (synopsis "Normalize audio")
+    (description "This package provides @code{ffmpeg-normalize}, a program that
+program normalizes media files to a certain loudness level using the EBU R 128
+loudness normalization procedure. It can also perform RMS-based normalization
+(where the mean is lifted or attenuated), or peak normalization to a certain
+target level.
+
+Batch processing of several input files is possible, including video files.")
     (license expat)))
