@@ -1,5 +1,5 @@
 ;;; GNU Guix --- Functional package management for GNU
-;;; Copyright © 2018, 2020 Leo Famulari <leo@famulari.name>
+;;; Copyright © 2018, 2020, 2021 Leo Famulari <leo@famulari.name>
 ;;;
 ;;; This file is NOT part of GNU Guix, but is supposed to be used with GNU
 ;;; Guix and thus has the same license.
@@ -18,8 +18,11 @@
 ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (leo packages ffmpeg)
+  #:use-module (guix download)
+  #:use-module (guix licenses)
   #:use-module (guix packages)
   #:use-module (guix utils)
+  #:use-module (guix build-system python)
   #:use-module (gnu packages audio)
   #:use-module (gnu packages video))
 
@@ -48,3 +51,20 @@
     (inputs
      `(("libfdk" ,libfdk)
        ,@(package-inputs ffmpeg)))))
+
+(define-public python-ffmpeg-progress-yield
+  (package
+    (name "python-ffmpeg-progress-yield")
+    (version "0.1.2")
+    (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "ffmpeg-progress-yield" version))
+        (sha256
+          (base32 "081qmjfskmqcqbrgmq0dzdcccqficm89nqlm6syji17kbkzkdblj"))))
+    (build-system python-build-system)
+    (home-page "https://github.com/slhck/ffmpeg-progress-yield")
+    (synopsis "Run an FFmpeg")
+    (description "This package provides a method to run an FFmpeg command with
+while printing a progress update.")
+    (license expat)))
