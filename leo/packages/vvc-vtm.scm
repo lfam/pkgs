@@ -29,7 +29,7 @@
 (define-public vtm
   (package
     (name "vtm")
-    (version "14.2")
+    (version "16.0")
     (source (origin
               (method git-fetch)
               (uri (git-reference
@@ -38,7 +38,7 @@
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "07gca29gsmqpl53m43i0laqpxhdd9505ja34gprw2jgva43rar61"))))
+                "168a1yi4kr5338xl0gg1ss0wppy1gpvgs1k9fri0v2k6wkv54j7m"))))
     ;; Only 64-bit architectures are supported upstream. For more info:
     ;; https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM#build-instructions
     (supported-systems '("x86_64-linux" "aarch64-linux"))
