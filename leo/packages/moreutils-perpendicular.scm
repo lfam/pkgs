@@ -38,8 +38,8 @@
        (list (string-append "PREFIX=" (assoc-ref %outputs "out"))
              (string-append "DOCBOOKXSL="
                             (assoc-ref %build-inputs "docbook-xsl") "/xml/xsl/"
-                            ,(package-name docbook-xsl) "-"
-                            ,(package-version docbook-xsl))
+                            ,(package-name docbook-xsl-next) "-"
+                            ,(package-version docbook-xsl-next))
              "CC=gcc"
              ;; It's annoying to have moreutils' `parallel` conflict
              ;; with GNU Parallel, so this package omits it.
